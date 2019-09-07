@@ -1,0 +1,11 @@
+@import '../../scss/variables.scss';
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 25%;
+    background: $main_color;
+    padding: 20px;
+    position: relative;
+}

@@ -1,0 +1,25 @@
+@import '../../scss/variables.scss';
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
+    height: 10%;
+    background-image: linear-gradient(to right, rgb(221, 44, 74), $main_color);
+}
+
+.header__avatar {
+    padding: 5px;
+    width: 50px;
+    height: 50px;
+    background: rgb(221, 44, 74);
+    border-radius: 50%;
+    color: $text_color;
+    font-size: 30px;
+}

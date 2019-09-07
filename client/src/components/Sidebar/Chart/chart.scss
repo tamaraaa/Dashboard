@@ -1,0 +1,23 @@
+.line {
+    stroke-dasharray: 40 700;
+    stroke-dashoffset: 700;
+    animation: dash 2s ease forwards;
+    fill: transparent;
+    stroke-width: 4px;
+    stroke: white;
+}
+
+svg {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+
+@keyframes dash {
+    to {
+        stroke-dashoffset: 0;
+        stroke-dasharray: 1 700;
+        stroke-width: 1px;
+    }
+}
