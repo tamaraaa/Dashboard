@@ -7,6 +7,8 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
+// koristi moment.js ili ga izbaci iz package.json
+// imas ovo u utils, importuj 
 function formatAMPM(date) {
   var hours = date.getHours();
   var minutes = date.getMinutes();
@@ -17,6 +19,7 @@ function formatAMPM(date) {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return {strTime,hours};
 }
+// Sredi identaciju (data)
 
 app.get("/dashboardInfo", async (req, res) => {
   let error;
