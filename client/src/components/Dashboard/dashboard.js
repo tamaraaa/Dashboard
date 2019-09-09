@@ -22,10 +22,11 @@ const Dashboard = () => {
   const buttonText = [
     "+-",
     moreDrinks ? "Added!" : "Add more!",
-    watherPlant ? "Wather!" : "Wathered:)"
+    watherPlant ? "Water!" : "Watered:)"
   ];
+
   useEffect(() => {}, []);
-  console.log(state);
+  console.log(state.companies);
   return (
     <div className="dashboard">
       <div className="dashboard_cards">

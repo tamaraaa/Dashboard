@@ -10,4 +10,20 @@
   height: 90%;
   position: absolute;
   top: 10%;
+  overflow-x: hidden;
+}
+
+.toogle_btn {
+  position: absolute;
+  top: 85px;
+  left: 15px;
+  background: transparent;
+  display: none;
+}
+
+@media (max-width: 1281px) {
+  .toogle_btn {
+    display: block;
+    z-index: 5;
+  }
 }

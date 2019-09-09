@@ -14,3 +14,9 @@
         display: flex;
     }
 }
+
+@media (max-width: 600px) {
+    .bar_chart {
+        display: none;
+    }
+}

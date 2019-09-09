@@ -37,32 +37,26 @@ app.get("/dashboardInfo", async (req, res) => {
         {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site1'
         },
      {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site2'
         },
         {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site3'
         },
          {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site4'
         },
          {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site5'
         },
        {
           name : 'google',
           visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-          key : 'site6'
         }
       
       ]

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { DashboardContext } from "./context/dashboardContext";
 import {
   START_FETCH,

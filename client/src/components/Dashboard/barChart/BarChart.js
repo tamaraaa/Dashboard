@@ -4,57 +4,88 @@ import * as d3 from "d3";
 
 const BarChart = ({ companies }) => {
   let [sumOfVisitors, setSumOfVisitors] = useState(0);
-  console.log(sumOfVisitors);
-  const margin = { left: 50, top: 10, right: 50, bottom: 30 };
+  console.log(companies);
 
   const drawChart = useCallback(() => {
-    const w = "50%";
-    const h = 300;
-    let data = companies.map(a => a.visitors);
-    let companiesName = companies.map(a => a.name);
-    console.log(companiesName);
-    const myColor = d3
+    const scaleStart = d3.min(companies, c => c.visitors);
+    const scaleEnd = d3.max(companies, c => c.visitors);
+       const myColor = d3
       .scaleOrdinal()
-      .domain(data)
+      .domain([scaleStart, scaleEnd])
       .range(["#F8C675", "rgb(221, 44, 74)"]);
-
-    const svg = d3
-      .select(".bar_chart")
-      .append("svg")
-      .attr("width", w)
-      .attr("height", h)
-      .attr("preserveAspectRatio", "xMinYMin meet")
-      .attr(
-        "viewBox",
-        "0 0 " +
-          (w + margin.left + margin.right) +
-          " " +
-          (h + margin.top + margin.bottom)
-      )
-      .style("margin", "0 auto");
-
+      var margin = { top: 10, right: 20, bottom: 60, left: 30 };
+      var width = 400 - margin.left - margin.right;
+      var height = 565 - margin.top - margin.bottom;
+      
+      var svg = d3.select('.bar_chart')
+        .append('svg')
+          .attr('width', width + margin.left + margin.right)
+          .attr('height', height + margin.top + margin.bottom)
+          .call(responsivefy)
+        .append('g')
+          .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+      
+      
+      var yScale = d3.scaleLinear()
+        .domain([scaleStart,scaleEnd])
+        .range([height, 0]);
+     
+    var xScale = d3
+      .scaleBand()
+      .padding(0.2)
+      .domain(companies.map(d => d.name))
+      .range([0, width]);
+      
+    var xAxis = d3
+      .axisBottom(xScale)
+      .ticks(5)
+      .tickSize(10)
+      .tickPadding(5);
     svg
-      .selectAll("rect")
-      .data(data)
-      .enter()
-      .append("rect")
-      .attr("x", (d, i) => i * 70)
-      .attr("y", (d, i) => h - 10 * d)
-      .attr("width", "10%")
-      .attr("height", (d, i) => d * 70)
-      .attr("fill", function(d) {
-        return myColor(d);
-      });
+      .append('g')
+      .attr("transform", `translate(0, ${height})`)
+      .call(xAxis)
+      .selectAll('text')
+      .style("text-anchor", "end")
+      .attr("transform", "rotate(-45)");
 
-    svg
-      .selectAll("text")
-      .data(data)
-      .enter()
-      .append("text")
-      .text(d => d)
-      .attr("x", (d, i) => i * 70)
-      .attr("y", (d, i) => h - 10 * d - 3);
-  }, [companies, margin.bottom, margin.left, margin.right, margin.top]);
+      
+      svg.selectAll('rect')
+        .data(companies)
+        .enter()
+        .append('rect')
+        .attr('x', d => xScale(d.name))
+        .attr('y', d => yScale(d.visitors))
+        .attr('width', d => xScale.bandwidth())
+        .attr('height', d => height - yScale(d.visitors));
+      
+      function responsivefy(svg) {
+        // get container + svg aspect ratio
+        var container = d3.select(svg.node().parentNode),
+            width = parseInt(svg.style("width")),
+            height = parseInt(svg.style("height")),
+            aspect = width / height;
+      
+        // add viewBox and preserveAspectRatio properties,
+        // and call resize so that svg resizes on inital page load
+        svg.attr("viewBox", "0 0 " + width + " " + height)
+            .attr("preserveAspectRatio", "xMinYMid")
+            .call(resize);
+      
+        // to register multiple listeners for same event type,
+        // you need to add namespace, i.e., 'click.foo'
+        // necessary if you call invoke this function for multiple svgs
+        // api docs: https://github.com/mbostock/d3/wiki/Selections#on
+        d3.select(window).on("resize." + container.attr("id"), resize);
+      
+        // get width of container and resize svg to fit it
+        function resize() {
+            var targetWidth = parseInt(container.style("width"));
+            svg.attr("width", targetWidth);
+            svg.attr("height", Math.round(targetWidth / aspect));
+        }
+      }
+  }, [companies]);
 
   useEffect(() => {
     if (companies) {
