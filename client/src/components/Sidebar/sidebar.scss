@@ -8,4 +8,12 @@
     background: $main_color;
     padding: 20px;
     position: relative;
+    font-size: 2vw;
+}
+
+@media (max-width: 1281px) {
+    .sidebar {
+        display: none;
+    }
+
 }

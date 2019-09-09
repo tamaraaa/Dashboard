@@ -1,0 +1,16 @@
+@import '../../../scss/variables.scss';
+
+.bar_chart {
+    position: relative;
+    height: 90%;
+    width: 80%;
+    border: 1px solid $main_color;
+    font-size: 2vw;
+    padding: 20px;
+
+    svg {
+        margin-left: 0;
+        align-self: center;
+        display: flex;
+    }
+}

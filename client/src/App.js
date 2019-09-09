@@ -1,33 +1,22 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 import Header from "./components/Header/header";
 import Sidebar from "./components/Sidebar/sidebar";
 import Dashboard from "./components/Dashboard/dashboard";
-import { connect } from "react-redux";
-import { fetchData } from "./js/actions";
+import { DashboardProvider } from "./context/dashboardContext";
 
-function App({ response }) {
-  console.log(response);
-  useEffect(() => {
-    fetchData();
-  }, []);
+function App() {
   return (
     <div className="App">
       <Header />
       <div className="wrapper">
-        <Sidebar data={response} />
-        <Dashboard data={response} />
+        <DashboardProvider>
+          <Sidebar />
+          <Dashboard />
+        </DashboardProvider>
       </div>
     </div>
   );
 }
-const mapStateToProps = state => {
-  return {
-    response: state.response
-  };
-};
 
-export default connect(
-  mapStateToProps,
-  fetchData
-)(App);
+export default App;

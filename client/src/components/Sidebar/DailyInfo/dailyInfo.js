@@ -1,31 +1,28 @@
-import React from "react";
-import { connect } from "react-redux";
+import React, { useContext } from "react";
+import { DashboardContext } from "../../../context/dashboardContext";
+import { getIcon } from "../../../utils";
+import { useFetch } from "../../../useFetch";
 
 import "./daily_info.scss";
 
-function mapDispatchToProps(dispatch) {
-  return {
-    // addArticle: article => dispatch(addArticle(article))
-  };
-}
-function mapStateToProps(dispatch) {
-  return {
-    // addArticle: article => dispatch(addArticle(article))
-  };
-}
-
 const DailyInfo = () => {
+  const context = useContext(DashboardContext);
+  const [state] = context;
+  let { dailyInfo } = state;
+  
   return (
     <div className="sidebar__info">
       <div className="sidebar__info__item">
-        <p>29 August</p>
-        <p>11:44:55</p>
+        <p>8 September</p>
+        <p>{dailyInfo && dailyInfo.time}</p>
+        <div className="sidebar__info__item">
+          <span className="sidebar__info__item__icon">
+            <img src={dailyInfo && getIcon(dailyInfo.weather)} alt="icon"/>
+          </span>
+          {dailyInfo && dailyInfo.weather}&#x2103;
+        </div>
       </div>
-      <div className="sidebar__info__item">25c</div>
     </div>
   );
 };
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(DailyInfo);
+export default DailyInfo;

@@ -1,6 +1,6 @@
+
 const cors = require("cors");
 const express = require("express");
-var uniqid = require('uniqid')
 
 const app = express();
 
@@ -15,7 +15,7 @@ function formatAMPM(date) {
   hours = hours ? hours : 12;
   minutes = minutes < 10 ? '0'+minutes : minutes;
   var strTime = hours + ':' + minutes + ' ' + ampm;
-  return strTime;
+  return {strTime,hours};
 }
 
 app.get("/dashboardInfo", async (req, res) => {
@@ -24,49 +24,49 @@ app.get("/dashboardInfo", async (req, res) => {
   try {
     data = {
       info:{
-      time: formatAMPM(new Date),
-      weather : Math.floor(Math.random() * (30 - 5 + 1) + 5),
-      
-      },
-      cardsData :[
-        { officeTemperature : Math.floor(Math.random() * (25 - 20 + 1) + 20),
-          id : uniqid()   
+        time: formatAMPM(new Date).strTime,
+        weather : Math.floor(Math.random() * (30 - 5 + 1) + 5),     
         },
-        { drinks: 4, id : uniqid() },
-        { watheringPlant : 12, id : uniqid()  }       
+      officeData :[
+        { "Current office temperature" : Math.floor(Math.random() * (25 - 20 + 1) + 20),
+        },
+        { "Drinks supplies" : 4 },
+        { "Time for wathering plants" : "12:00PM" }       
       ],
-      curentNumOfVisitors : {
-        site1 : {
+      curentNumOfVisitors :[
+        {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site1'
         },
-        site2 : {
+     {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site2'
         },
-        site3 : {
+        {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site3'
         },
-        site4 : {
+         {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site4'
         },
-        site5 : {
+         {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site5'
         },
-        site6 : {
+       {
           name : 'google',
-          visitors :  Math.floor(Math.random() * (50 - 10 + 1) + 10),
+          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
           key : 'site6'
         }
-      }
+      
+      ]
+        
     };
   } catch (error) {
     console.error("Error:", error);
