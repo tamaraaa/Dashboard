@@ -19,7 +19,7 @@ function formatAMPM(date) {
   var strTime = hours + ':' + minutes + ' ' + ampm;
   return {strTime,hours};
 }
-// Sredi identaciju (data)
+// Sredi indentaciju (data)
 
 app.get("/dashboardInfo", async (req, res) => {
   let error;
