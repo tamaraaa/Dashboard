@@ -1,6 +1,13 @@
 import React from "react";
 import "./dashboard_cards_item.scss";
 
+
+// ova komponenta je malo glupa
+// bolje da si napravila komponenetu dashboardCard koja je zapravo wrapper oko nekog childa i renderuje ga
+// taj child moze da bude biljka, temperatura ili sta vec, dashboardCard to ne zanima
+// bukvalno samo da te neke stilove koji su potrebni i renderuje child, nista vise
+// onda pozivas ovaj card tri puta i u svaki kao child stavis taj neki content koji ti treba
+// na taj nacin mozes card kasnije i da reuzujes a ne da moras uvek u njega da dodajes nov props, recimo sad hoces macku da 
 const dashboardCardsItem = ({
   data,
   id,
