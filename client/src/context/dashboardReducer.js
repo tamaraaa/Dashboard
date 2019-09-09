@@ -14,6 +14,9 @@ const dashboardReducer = (state, action) => {
       return {
         ...state,
         status: "success",
+        // rekao bih da ti imenovanje bas i ne ide najbolje :D
+        // companies -> currentNomOfVisitors, nesto nisi lepo imenovala od ova dva
+        // takodje, typo current, ne curent
         companies: payload.data.curentNumOfVisitors,
         dailyInfo: payload.data.info,
         officeInfo: payload.data.officeData
