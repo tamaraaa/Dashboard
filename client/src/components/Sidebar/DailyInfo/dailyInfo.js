@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
 import { DashboardContext } from "../../../context/dashboardContext";
 import { getIcon } from "../../../utils";
-import { useFetch } from "../../../useFetch";
-
 import "./daily_info.scss";
 
 const DailyInfo = () => {

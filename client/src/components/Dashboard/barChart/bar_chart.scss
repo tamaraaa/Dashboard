@@ -2,21 +2,20 @@
 
 .bar_chart {
     position: relative;
-    height: 90%;
+    height: 400px;
     width: 80%;
-    border: 1px solid $main_color;
     font-size: 2vw;
     padding: 20px;
 
     svg {
-        margin-left: 0;
-        align-self: center;
-        display: flex;
+        margin: 0 auto;
     }
+
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .bar_chart {
-        display: none;
+        font-size: 4.5vw;
+
     }
 }

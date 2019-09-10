@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./App.scss";
 import Header from "./components/Header/header";
 import Sidebar from "./components/Sidebar/sidebar";
 import Dashboard from "./components/Dashboard/dashboard";
+import { FaAngleLeft } from "react-icons/fa";
+import { FaAngleRight } from "react-icons/fa";
+
 import { DashboardProvider } from "./context/dashboardContext";
 
 function App() {
@@ -13,11 +16,14 @@ function App() {
       <button
         className="toogle_btn"
         onClick={() => {
-          console.log("blaa");
           setToogleSidebar(!toogleSidebar);
         }}
       >
-        See daily info
+        {toogleSidebar ? (
+          <FaAngleLeft color="dd3d4a" size={40} />
+        ) : (
+          <FaAngleRight color="dd3d4a" size={40} />
+        )}
       </button>
       <div className="wrapper">
         <DashboardProvider>

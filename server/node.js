@@ -3,7 +3,6 @@ const cors = require("cors");
 const express = require("express");
 
 const app = express();
-
 app.use(express.json());
 app.use(cors());
 
@@ -28,37 +27,41 @@ app.get("/dashboardInfo", async (req, res) => {
         weather : Math.floor(Math.random() * (30 - 5 + 1) + 5),     
         },
       officeData :[
-        { "Current office temperature" : Math.floor(Math.random() * (25 - 20 + 1) + 20),
+        { 
+          "Current office temperature" : Math.floor(Math.random() * (25 - 20 + 1) + 20),
         },
-        { "Drinks supplies" : 4 },
-        { "Time for wathering plants" : "12:00PM" }       
+        { 
+          "Drinks supplies" : 4 
+        },
+        { 
+          "Time for wathering plants" : "12:00PM" 
+        }       
       ],
-      curentNumOfVisitors :[
+      curentNumOfVisitors : [
         {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
-        },
-     {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
+          name: "google",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
         },
         {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
+          name: "amazon",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
         },
-         {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
+        {
+          name: "elsevier",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
         },
-         {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
+        {
+          name: "tomtom",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
         },
-       {
-          name : 'google',
-          visitors :  Math.floor(Math.random() * (20 - 10 + 1) + 10),
+        {
+          name: "uber",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+        },
+        {
+          name: "facebook",
+          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
         }
-      
       ]
         
     };

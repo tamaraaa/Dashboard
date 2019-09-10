@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./dashboard_cards_item.scss";
 
 const dashboardCardsItem = ({
@@ -11,7 +12,6 @@ const dashboardCardsItem = ({
   temperature,
   setTemperature
 }) => {
-  console.log(data);
   const button = id => {
     switch (id) {
       case 2:
@@ -53,7 +53,6 @@ const dashboardCardsItem = ({
         return Object.values(data)[0];
     }
   };
-  console.log(moreDrinks, data.id);
   let image = data.img;
   return (
     <div className="dashboard__cards__item">
@@ -65,4 +64,15 @@ const dashboardCardsItem = ({
     </div>
   );
 };
+dashboardCardsItem.propTypes = {
+  data: PropTypes.object,
+  id: PropTypes.number,
+  setWatherPlant: PropTypes.func,
+  btnText: PropTypes.string,
+  setMoreDrinks: PropTypes.func,
+  moreDrinks: PropTypes.number,
+  temperature: PropTypes.number,
+  setTemperature: PropTypes.func
+};
+
 export default dashboardCardsItem;
