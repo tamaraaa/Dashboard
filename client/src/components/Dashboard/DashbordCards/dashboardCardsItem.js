@@ -5,7 +5,7 @@ import "./dashboard_cards_item.scss";
 const dashboardCardsItem = ({
   data,
   id,
-  setWatherPlant,
+  setWaterPlant,
   btnText,
   setMoreDrinks,
   moreDrinks,
@@ -15,13 +15,28 @@ const dashboardCardsItem = ({
   const button = id => {
     switch (id) {
       case 2:
-        return <button onClick={() => setWatherPlant(false)}>{btnText}</button>;
+        return (
+          <button
+            className="dashboard__cards__item__btn"
+            onClick={() => setWaterPlant(false)}
+          >
+            {btnText}
+          </button>
+        );
       case 1:
-        return <button onClick={() => setMoreDrinks(5)}>{btnText}</button>;
+        return (
+          <button
+            className="dashboard__cards__item__btn"
+            onClick={() => setMoreDrinks(5)}
+          >
+            {btnText}
+          </button>
+        );
       case 0:
         return (
-          <span className="dashboard__cards__item__btn">
+          <span className="dashboard__cards__item__btn_group">
             <button
+              className="dashboard__cards__item__btn"
               onClick={() => {
                 setTemperature(temperature + 1);
               }}
@@ -29,6 +44,7 @@ const dashboardCardsItem = ({
               {btnText[0]}
             </button>{" "}
             <button
+              className="dashboard__cards__item__btn"
               onClick={() => {
                 setTemperature(temperature - 1);
               }}
@@ -56,10 +72,10 @@ const dashboardCardsItem = ({
   let image = data.img;
   return (
     <div className="dashboard__cards__item">
-      <span>
+      <span className="dashboard__cards__item__text">
         {Object.keys(data)[0]} : {values(id)}
       </span>{" "}
-      <img src={image} alt="img" />
+      <img className="dashboard__cards__item__img" src={image} alt="img" />
       {button(id)}
     </div>
   );

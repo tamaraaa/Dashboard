@@ -14,18 +14,11 @@
 @media (max-width: 600px) {
     .sidebar {
         transform: translateX(-100%);
-        transition: opacity 1s ease-in-out;
         display: none;
-        opacity: 0;
-
-        .dailyInfo {
-            width: 0;
-        }
     }
 
     .sidebar__mobile {
         width: 100vw;
-        opacity: 1;
         display: flex;
         justify-content: flex-start;
         background: $main_color;
@@ -36,10 +29,5 @@
         font-size: 10vw;
         z-index: 4;
         transform: translateX(0);
-        transition-duration: 1s;
-
-        transition: opacity 1s ease-in-out;
-
     }
-
 }

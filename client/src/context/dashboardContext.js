@@ -3,7 +3,7 @@ import dashboardReducer from "./dashboardReducer";
 
 const initialState = {
   startFetching: false,
-  status: "",
+  loading: false,
   companies: null,
   dailyInfo: null,
   officeInfo: null,

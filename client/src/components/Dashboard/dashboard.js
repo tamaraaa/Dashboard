@@ -1,33 +1,31 @@
-import React, { useContext, useEffect, useState } from "react";
-import DashboardCardsItem from "./DashbordCards/dashboardCardsItem";
-import { DashboardContext } from "../../context/dashboardContext";
-import { useFetch } from "../../useFetch";
-import BarChart from "./barChart/BarChart";
+import React, { useContext, useState } from "react";
 import uniqid from "uniqid";
+
+import BarChart from "./BarChart/BarChart";
+import DashboardCardsItem from "./DashbordCards/DashboardCardsItem";
+
+import { DashboardContext } from "../../context/dashboardContext";
 import water from "../../assets/images/water.svg";
 import thermometer from "../../assets/images/thermometer.svg";
 import sadPlant from "../../assets/images/sad_plant.png";
 import happyPlant from "../../assets/images/happy_plant.png";
+
 import "./dashboard.scss";
 
 const Dashboard = () => {
-  useFetch();
-
-  const context = useContext(DashboardContext);
-  const [state] = context;
-  const [watherPlant, setWatherPlant] = useState(true);
+  const [state] = useContext(DashboardContext);
+  const [waterPlant, setWaterPlant] = useState(true);
   const [moreDrinks, setMoreDrinks] = useState(0);
   const [temperature, setTemperature] = useState(0);
-  const images = [thermometer, water, watherPlant ? sadPlant : happyPlant];
+  const images = [thermometer, water, waterPlant ? sadPlant : happyPlant];
   const buttonText = [
     "+-",
     moreDrinks ? "Added!" : "Add more!",
-    watherPlant ? "Wather!" : "Wathered:)"
+    waterPlant ? "Water!" : "Waterd:)"
   ];
-  useEffect(() => {}, []);
   return (
     <div className="dashboard">
-      <div className="dashboard_cards">
+      <div className="dashboard__cards">
         {state.officeInfo &&
           state.officeInfo.map((card, index) => {
             card.img = images[index];
@@ -41,13 +39,13 @@ const Dashboard = () => {
                 moreDrinks={moreDrinks}
                 setMoreDrinks={setMoreDrinks}
                 id={index}
-                setWatherPlant={setWatherPlant}
+                setWaterPlant={setWaterPlant}
                 key={uniqid()}
               />
             );
           })}
       </div>
-      <div className="dashboard_graf">
+      <div className="dashboard__chart">
         <BarChart companies={state.companies} />
       </div>
     </div>

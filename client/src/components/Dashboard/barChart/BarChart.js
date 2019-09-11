@@ -1,17 +1,19 @@
 import React, { useCallback, useState, useEffect } from "react";
 import * as d3 from "d3";
+
 import "./bar_chart.scss";
 
 const BarChart = ({ companies }) => {
   let [sumOfVisitors, setSumOfVisitors] = useState(0);
-
+  const red = "#dd2c4a";
+  const yellow = "#F8C675";
   const drawChart = useCallback(() => {
     const scaleStart = d3.min(companies, c => c.visitors);
     const scaleEnd = d3.max(companies, c => c.visitors);
     const myColor = d3
       .scaleOrdinal()
       .domain([scaleStart, scaleEnd])
-      .range(["#F8C675", "rgb(221, 44, 74)"]);
+      .range([yellow, red]);
 
     const margin = { top: 10, right: 20, bottom: 60, left: 30 };
     const width = 450 - margin.left - margin.right;
@@ -39,7 +41,7 @@ const BarChart = ({ companies }) => {
       .domain(companies.map(d => d.name))
       .range([0, width]);
 
-    var xAxis = d3
+    const xAxis = d3
       .axisBottom(xScale)
       .ticks(5)
       .tickSize(10)
@@ -88,8 +90,8 @@ const BarChart = ({ companies }) => {
     if (companies) {
       drawChart();
       setSumOfVisitors(
-        companies.reduce((acc, obj) => {
-          return acc + obj.visitors;
+        companies.reduce((acc, { visitors }) => {
+          return acc + visitors;
         }, 0)
       );
     }

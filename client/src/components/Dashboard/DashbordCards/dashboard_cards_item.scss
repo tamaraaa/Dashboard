@@ -16,32 +16,39 @@
     -moz-box-shadow: 0px -1px 5px 0px rgba(153, 129, 100, 1);
     box-shadow: 0px -1px 5px 0px rgba(153, 129, 100, 1);
 
-    span {
+    &__text {
         display: flex;
         width: 90%;
         height: 30%;
         font-size: 1.5vw
     }
 
-    img {
+    &__img {
         width: 40%;
         height: 40%;
     }
 
-    button {
+    &__btn_group {
+        width: 100px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    &__btn {
         cursor: pointer;
-        background: inherit;
+        background: #dd3d4a;
         opacity: 0.8;
         border: 0.5px solid white;
         border-radius: 2px;
         height: 20px;
         outline: 0;
+        color: white;
+        transition: all 0.5s ease-in-out;
     }
 
-    .dashboard__cards__item__btn {
-        height: 15px;
-        display: flex;
-        justify-content: space-evenly;
+    &__btn:hover {
+        background: white;
+        color: #dd3d4a;
     }
 }
 
@@ -54,7 +61,7 @@
         width: 70vw;
         height: 30vh;
 
-        span {
+        &__text {
             font-size: 4.5vw;
         }
     }

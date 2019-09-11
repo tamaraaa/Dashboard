@@ -1,4 +1,4 @@
-
+const dashboardInfoRoute = "/dashboardInfo"
 const cors = require("cors");
 const express = require("express");
 
@@ -6,7 +6,9 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-function formatAMPM(date) {
+const generateRandomNum = (maxNumber,minNumber) => Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber)
+
+const formatTime = date =>{
   var hours = date.getHours();
   var minutes = date.getMinutes();
   var ampm = hours >= 12 ? 'pm' : 'am';
@@ -17,18 +19,15 @@ function formatAMPM(date) {
   return {strTime,hours};
 }
 
-app.get("/dashboardInfo", async (req, res) => {
-  let error;
-  let data;
-  try {
+app.get(dashboardInfoRoute, async (req, res) => {
     data = {
       info:{
-        time: formatAMPM(new Date).strTime,
-        weather : Math.floor(Math.random() * (30 - 5 + 1) + 5),     
+        time: formatTime(new Date).strTime,
+        weather : generateRandomNum(30,10) ,     
         },
       officeData :[
         { 
-          "Current office temperature" : Math.floor(Math.random() * (25 - 20 + 1) + 20),
+          "Current office temperature" : generateRandomNum(25,20),
         },
         { 
           "Drinks supplies" : 4 
@@ -37,38 +36,36 @@ app.get("/dashboardInfo", async (req, res) => {
           "Time for wathering plants" : "12:00PM" 
         }       
       ],
-      curentNumOfVisitors : [
+      currentVisitors : [
         {
-          name: "google",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Google",
+          visitors: generateRandomNum(20,10)
         },
         {
-          name: "amazon",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Amazon",
+          visitors: generateRandomNum(20,10)
         },
         {
-          name: "elsevier",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Elsevier",
+          visitors: generateRandomNum(20,10)
         },
         {
-          name: "tomtom",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Tomtom",
+          visitors: generateRandomNum(20,10)
         },
         {
-          name: "uber",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Uber",
+          visitors: generateRandomNum(20,10)
         },
         {
-          name: "facebook",
-          visitors: Math.floor(Math.random() * (20 - 10 + 1) + 10)
+          name: "Facebook",
+          visitors: generateRandomNum(20,10)
         }
       ]
         
     };
-  } catch (error) {
-    console.error("Error:", error);
-  }
-  res.send({ error,data });
+ 
+  res.send(data);
 });
 
 app.listen(5000);

@@ -8,20 +8,20 @@ const dashboardReducer = (state, action) => {
     case START_FETCH:
       return {
         ...state,
-        status: "pending"
+        loading: true
       };
     case FETCH_SUCCESS:
       return {
         ...state,
-        status: "success",
-        companies: payload.data.curentNumOfVisitors,
-        dailyInfo: payload.data.info,
-        officeInfo: payload.data.officeData
+        loading: false,
+        companies: payload.currentVisitors,
+        dailyInfo: payload.info,
+        officeInfo: payload.officeData
       };
     case FETCH_ERROR: {
       return {
         ...state,
-        error: payload.error
+        error: "error"
       };
     }
     default:
